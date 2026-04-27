@@ -10,20 +10,20 @@ source:
   sha256: e3d1327518c5c94283ba6c1112e5ef72739a91f45670744e93af701ec41d9413
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:
   host:
     - pip
-    - python >=3.7
+    - python {{ python_min }}
   run:
     - pytorch >=1.9.1
     - torchdiffeq >=0.2.2
     - numpy >=1.19.2
     - scanpy >=1.7.1
-    - python >=3.7
+    - python >={{ python_min }}
     - anndata >=0.7.5
     - scipy >=1.5.2
     - tqdm >=4.32.2
@@ -31,6 +31,8 @@ requirements:
     - leidenalg >=0.8.4
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - sctour
 
